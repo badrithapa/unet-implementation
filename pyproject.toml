@@ -1,5 +1,5 @@
 [project]
-name = "unet-implementation"
+name = "unet"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -19,11 +19,16 @@ url = "https://download.pytorch.org/whl/cpu"
 explicit = true
 
 [project.scripts]
-unet-implementation = "unet_implementation:main"
+unet = "unet:main"
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [dependency-groups]
+dev = [
+    "graphviz>=0.20.3",
+    "ipykernel>=6.29.5",
+    "torchview",
+]
 test = []
