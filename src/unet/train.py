@@ -65,7 +65,8 @@ def train_fn(loader, model, optimizer, loss_fn, scaler) -> None:
         data = data.to(DEVICE)
         targets = targets.float().unsqueeze(1).to(DEVICE)
 
-        with torch.amp.autocast():
+        # Forward pass with automatic mixed precision
+        with torch.amp.autocast(device_type=DEVICE):
             predictions = model(data)
             loss = loss_fn(predictions, targets)
 
@@ -139,13 +140,13 @@ def main() -> None:
         PIN_MEMORY,
     )
 
-    scaler = torch.cuda.amp.GradScaler()
+    scaler = torch.amp.GradScaler()
 
     if LOAD_MODEL:
         load_checkpoint(torch.load("./model_ckpt/my_checkpoint.pth"), model)
 
     check_accuracy(val_loader, model, device=DEVICE)
-    scaler = torch.cuda.amp.GradScaler()
+    scaler = torch.amp.GradScaler()
 
     for epoch in range(NUM_EPOCHS):
         train_fn(train_loader, model, optimizer, loss_fn, scaler)
