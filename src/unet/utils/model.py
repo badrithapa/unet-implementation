@@ -88,32 +88,3 @@ def check_accuracy(loader, model, device="cuda") -> None:
     )
     print(f"Dice score: {dice_score / len(loader)}")
     model.train()
-
-
-def save_predictions_as_imgs(
-    loader, model, folder="saved_images/", device="cuda"
-) -> None:
-    """
-    save_predictions_as_imgs is a function that saves the predictions of the model
-    as images
-
-    Parameters
-    ----------
-    loader : Dataloader
-        dataloader for the validation set
-    model : torch.nn.Module
-        model to be evaluated
-    folder : str, optional
-        folder to save the images, by default "saved_images/"
-    device : str, optional
-        device to be used, by default "cuda"
-    """
-    model.eval()
-    for idx, (x, y) in enumerate(loader):
-        x = x.to(device=device)
-        with torch.no_grad():
-            preds = torch.sigmoid(model(x))
-            preds = (preds > 0.5).float()
-        torchvision.utils.save_image(preds, f"{folder}{idx}_pred.jpg")
-        torchvision.utils.save_image(y.unsqueeze(1), f"{folder}{idx}.jpg")
-    model.train()
