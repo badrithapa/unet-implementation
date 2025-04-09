@@ -5,7 +5,6 @@ from albumentations.pytorch import ToTensorV2
 from tqdm import tqdm
 
 from .model import UNet
-from .dataset import CustomCarDataset
 
 from .utils import (
     load_checkpoint,
