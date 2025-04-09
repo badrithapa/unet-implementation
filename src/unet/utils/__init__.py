@@ -1,9 +1,9 @@
-from .model import (
+from .model_utils import (
     load_checkpoint,
     save_checkpoint,
     check_accuracy,
 )
-from .data import get_loaders, save_predictions_as_imgs
+from .data_utils import get_loaders, save_predictions_as_imgs
 
 __all__ = [
     "save_checkpoint",

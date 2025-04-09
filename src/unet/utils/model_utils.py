@@ -1,5 +1,4 @@
 import torch
-import torchvision
 
 
 def save_checkpoint(state: dict, filename="my_checkpoint.pth.tar") -> None:
