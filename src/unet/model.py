@@ -78,6 +78,23 @@ class DoubleConv(nn.Module):
         )
 
     def forward(self, x):
+        """
+        Defines the forward pass of the DoubleConv layer.
+
+        Parameters
+        ----------
+        x : torch.Tensor
+            Input tensor to the DoubleConv layer.
+
+        Returns
+        -------
+        torch.Tensor
+            Output tensor from the DoubleConv layer.
+
+        Notes
+        -----
+        The forward pass consists of two convolutional layers, each followed by batch normalization and ReLU activation.
+    """
         return self.conv(x)
 
 
